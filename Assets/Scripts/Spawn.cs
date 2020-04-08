@@ -20,9 +20,6 @@ public class Spawn : MonoBehaviour
         minArea = transform.GetChild(0);
         maxArea = transform.GetChild(1);
 
-       
-
-       
     }
 
     // Update is called once per frame
