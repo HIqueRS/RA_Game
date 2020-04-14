@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2deabaf14a97a7e4da056af928a4584e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sistema: {fileID: 923359385370140742, guid: 8155b3df848a5a6428d8fd92795ad63e, type: 3}
   center: {fileID: 7599723129468555605, guid: 168970f30362da145800e02f5b967a23, type: 3}
   buraco: {fileID: 0}
   vel: 2

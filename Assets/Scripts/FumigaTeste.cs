@@ -1,114 +1,124 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System;
 
-public class FumigaTeste : MonoBehaviour
+namespace ProjAR
 {
-    public GameObject center, buraco;
-    Vector3 origem;
-
-    #region variaveis
-    public float vel = 2;
-    float velCarregando;
-    public bool _return;
-    public Vector3 movimento;
-    public float distance_center, distance_buraco;
-    public bool torreAfrente;
-    float HpTotal;
-    public float HpAtual;
-    #endregion
-
-    CharacterController CC;
-
-    // Start is called before the first frame update
-    void Start()
+    public class FumigaTeste : MonoBehaviour
     {
-        velCarregando = 1;
-        _return = false;
-        CC = GetComponent<CharacterController>();
-        torreAfrente = false;
-        HpAtual = HpTotal = 100f;
-        origem = gameObject.transform.position;
+        public GameObject center, buraco;
+        Vector3 origem;
 
-    }
+        #region variaveis
+        public float vel = 2;
+        float velCarregando;
+        public bool _return;
+        public Vector3 movimento;
+        public float distance_center, distance_buraco;
+        public bool torreAfrente;
+        float HpTotal;
+        public float HpAtual;
+        public bool pegar;
+        #endregion
 
-    // Update is called once per frame
-    void Update()
-    {
-        Viva();
-        //Transform.eulerAngles.x = 0;
-        distance_center = Vector3.Distance(transform.position, center.transform.position);
-        distance_buraco = Vector3.Distance(transform.position, origem);
+        CharacterController CC;
 
-
-        if (distance_center <= 1)
+        // Start is called before the first frame update
+        void Start()
         {
-
-            _return = true;
-            gameObject.transform.FindChild("açucar").gameObject.SetActive(true);
+            velCarregando = 1;
+            _return = false;
+            CC = GetComponent<CharacterController>();
+            torreAfrente = false;
+            HpAtual = HpTotal = 100f;
+            origem = gameObject.transform.position;
+            pegar = true;
         }
 
-
-        if(_return == false)
+        // Update is called once per frame
+        void Update()
         {
+            Viva();
+            distance_center = Vector3.Distance(transform.position, center.transform.position);
+            distance_buraco = Vector3.Distance(transform.position, origem);
 
-            if(torreAfrente == true)
+            if (distance_center <= 1)
             {
-                movimento.z = 0;
-                movimento.x = vel * Time.deltaTime;
-                  torreAfrente = false;
+                _return = true;
+                gameObject.transform.FindChild("açucar").gameObject.SetActive(true);
             }
-            else
+
+
+            if (_return == false)
             {
-                transform.LookAt(center.transform.position);
+                if (torreAfrente == true)
+                {
+                    movimento.z = 0;
+                    movimento.x = vel * Time.deltaTime;
+                    torreAfrente = false;
+                }
+                else
+                {
+                    transform.LookAt(center.transform.position);
+                    movimento.x = 0;
+                    movimento.y = -4 * Time.deltaTime;
+                    movimento.z = vel * Time.deltaTime;
+                }
+
+                movimento = transform.TransformDirection(movimento);
+                CC.Move(movimento);
+            }
+            else if (_return == true && pegar == true)
+            {
+                Sistema.Instance.AtualizarAcucar();
+                pegar = false;
+            }
+            else if (_return == true)
+            {
+
+                transform.LookAt(origem);
+
                 movimento.x = 0;
                 movimento.y = -4 * Time.deltaTime;
-                movimento.z = vel * Time.deltaTime;
+                movimento.z = velCarregando * Time.deltaTime;
+
+                movimento = transform.TransformDirection(movimento);
+                CC.Move(movimento);
+
+                if (distance_buraco <= 1.5)
+                {
+                    Destroy(gameObject);
+                    Sistema.Instance.AtualizarLifes(-1);
+                }
             }
-
-            movimento = transform.TransformDirection(movimento);
-            CC.Move(movimento);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
         }
-        else if(_return == true)
+
+        private void OnTriggerEnter(Collider other)
         {
-            transform.LookAt(origem);
+            string nome = other.gameObject.name;
 
-            movimento.x = 0;
-            movimento.y = -4 * Time.deltaTime;
-            movimento.z = velCarregando * Time.deltaTime;
-
-            movimento = transform.TransformDirection(movimento);
-            CC.Move(movimento);
-
-            if(distance_buraco <= 1.5)
+            if (other.gameObject.tag == "AreaTorre")
             {
-                Destroy(gameObject);
+                torreAfrente = true;
             }
         }
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        string nome = other.gameObject.name;
-
-        if (other.gameObject.tag == "AreaTorre")
+        public void TomandoPorrada(float dps)
         {
-            torreAfrente = true;
+            HpAtual -= dps * Time.deltaTime;
         }
-    }
 
-    public void TomandoPorrada(float dps)
-    {
-        HpAtual -= dps * Time.deltaTime;
-    }
-
-    private void Viva()
-    {
-        if(HpAtual <= 0)
+        private void Viva()
         {
-            Destroy(gameObject);
-            print("Destruido porq MORREO");
+            if (HpAtual <= 0)
+            {
+                Sistema.Instance.AtualizarPoints(1);
+                Destroy(gameObject);
+                print("Destruido porq MORREO");
+            }
         }
     }
 }
