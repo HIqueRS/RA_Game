@@ -10,26 +10,49 @@ public class Spray : MonoBehaviour
     private Transform partToRotate;
     public float turnSpeed;
 
+    private float fireCountdown = 0f;
+    public float fireRate = 1f;
+    public float porrada = 20;
+
+    private BoxCollider colisor;
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         partToRotate = transform;
+
+        colisor = GetComponent<BoxCollider>();
+
+        colisor.enabled = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(target == null)
-        {
+        if(target == null)      
             return;
-        }
+        
 
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation,Time.deltaTime *turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
 
+        if(fireCountdown <= 0)
+        {
+            Shot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+
+    private void Shot()
+    {
+        colisor.enabled = true;
+        Debug.Log("bah");
     }
 
     void UpdateTarget()
@@ -63,4 +86,28 @@ public class Spray : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.tag == "Ant")
+        {
+            Debug.Log("ué");
+            other.gameObject.GetComponent<ProjAR.FumigaTeste>().TomandoPorrada(porrada);
+        }
+
+        colisor.enabled = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Ant")
+        {
+            Debug.Log("ué 2");
+            other.gameObject.GetComponent<ProjAR.FumigaTeste>().TomandoPorrada(porrada);
+        }
+
+        colisor.enabled = false;
+    }
+
+
 }
