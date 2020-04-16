@@ -6,12 +6,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
-
+using UnityEngine.SceneManagement;
 
 namespace ProjAR
 {
     public class Sistema : MonoBehaviour
     {
+        [Header("Audio")]
+        public AudioSource sfxSource;
+        public AudioSource musicSource;
+
+        [Header("Effects")]
+        //aqui é pra ir os efeitos sonoros
+
         public GameObject center;
         int contAcucar;
         public Text pointstxt, lifestxt;
@@ -71,7 +78,18 @@ namespace ProjAR
 
        public void Reiniciar()
         {
-            
+            SceneManager.LoadScene("Raulo");
+        }
+
+
+        public void LoadScene(string name)
+        {
+            SceneManager.LoadScene(name);
+        }
+
+        public void PlaySFX(AudioClip sfxClip, float volume) // volume de 0.0 a 1 ( se n me engano )
+        {
+            sfxSource.PlayOneShot(sfxClip, volume);
         }
     }
 }
