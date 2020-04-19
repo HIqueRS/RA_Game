@@ -9,12 +9,15 @@ public class Spray : MonoBehaviour
     public float range;
     private Transform partToRotate;
     public float turnSpeed;
-
+    
     private float fireCountdown = 0f;
     public float fireRate = 1f;
     public float porrada = 20;
 
     private BoxCollider colisor;
+
+
+    public GameObject particulas;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +29,19 @@ public class Spray : MonoBehaviour
 
         colisor.enabled = false;
 
+        particulas.GetComponent<ParticleSystem>().enableEmission = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(target == null)      
+       
+        if (target == null)
+        {
+            particulas.GetComponent<ParticleSystem>().enableEmission = false;
             return;
+        }
         
 
         Vector3 dir = target.position - transform.position;
@@ -47,11 +56,13 @@ public class Spray : MonoBehaviour
         }
 
         fireCountdown -= Time.deltaTime;
+       
     }
 
     private void Shot()
     {
         colisor.enabled = true;
+        particulas.GetComponent<ParticleSystem>().enableEmission = true;
         Debug.Log("bah");
     }
 
