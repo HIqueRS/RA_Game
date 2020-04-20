@@ -12,7 +12,7 @@ public class Spray : MonoBehaviour
     
     private float fireCountdown = 0f;
     public float fireRate = 1f;
-    public float porrada = 20;
+    public float porrada = 100;
 
     private BoxCollider colisor;
 

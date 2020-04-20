@@ -55,7 +55,7 @@ namespace ProjAR
         {
             pontos += p;
 
-            pointstxt.text = "Pontos: " + pontos.ToString();
+            pointstxt.text = "Fumigas Mortas: " + pontos.ToString();
         }
 
         public void AtualizarLifes(int l)

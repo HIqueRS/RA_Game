@@ -109,7 +109,7 @@ namespace ProjAR
 
         public void TomandoPorrada(float dps)
         {
-            HpAtual -= dps * Time.deltaTime;
+            HpAtual -= dps;
         }
 
         private void Viva()

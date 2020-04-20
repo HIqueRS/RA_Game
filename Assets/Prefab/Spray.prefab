@@ -4933,7 +4933,7 @@ MonoBehaviour:
   range: 1.95
   turnSpeed: 5
   fireRate: 1
-  porrada: 20
+  porrada: 50
   particulas: {fileID: 610153147386138010}
 --- !u!65 &8959113940266931800
 BoxCollider:
