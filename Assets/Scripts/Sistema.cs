@@ -20,11 +20,11 @@ namespace ProjAR
         //aqui é pra ir os efeitos sonoros
 
         public GameObject center;
-        int contAcucar;
+        int contAcucarCenter, contAcucarPerdidos;
         public Text pointstxt, lifestxt;
         public int pontos, lifes;
         bool perdeu;
-        public GameObject telaGameOver;
+        public GameObject telaGameOver, gerHudAcucar;
 
         public static Sistema Instance;
 
@@ -34,14 +34,14 @@ namespace ProjAR
             pontos = 0;
             lifes = 10;
             perdeu = false;
-            contAcucar = 5;
+            contAcucarCenter = contAcucarPerdidos = 5;
         }
 
         // Update is called once per frame
         void Update()
         {
 
-            if(contAcucar == 0)
+            if(contAcucarPerdidos == 0)
             {
                 telaGameOver.SetActive(true);
             }
@@ -70,13 +70,19 @@ namespace ProjAR
             }
         }
 
-        public void AtualizarAcucar()
+        public void AtualizarAcucarCenter()
         {
-            center.transform.FindChild("Açucar" + contAcucar.ToString()).gameObject.SetActive(false);
-            contAcucar -= 1;
+            center.transform.FindChild("Açucar" + contAcucarCenter.ToString()).gameObject.SetActive(false);
+            contAcucarCenter -= 1;
         }
 
-       public void Reiniciar()
+        public void AtualizarHudAcucar()
+        {
+            gerHudAcucar.transform.FindChild("Acucar" + contAcucarPerdidos.ToString()).gameObject.SetActive(false);
+            contAcucarPerdidos -= 1;
+        }
+
+        public void Reiniciar()
         {
             SceneManager.LoadScene("Raulo");
         }
