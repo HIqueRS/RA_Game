@@ -47,7 +47,7 @@ namespace ProjAR
             if (distance_center <= 1)
             {
                 _return = true;
-                gameObject.transform.FindChild("açucar").gameObject.SetActive(true);
+                gameObject.transform.Find("açucar").gameObject.SetActive(true);
             }
 
 

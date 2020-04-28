@@ -72,7 +72,7 @@ namespace ProjAR
 
         public void AtualizarAcucar()
         {
-            center.transform.FindChild("Açucar" + contAcucar.ToString()).gameObject.SetActive(false);
+            center.transform.Find("Açucar" + contAcucar.ToString()).gameObject.SetActive(false);
             contAcucar -= 1;
         }
 
