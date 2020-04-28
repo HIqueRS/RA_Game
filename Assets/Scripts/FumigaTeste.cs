@@ -72,7 +72,7 @@ namespace ProjAR
             }
             else if (_return == true && pegar == true)
             {
-                Sistema.Instance.AtualizarAcucar();
+                Sistema.Instance.AtualizarAcucarCenter();
                 pegar = false;
             }
             else if (_return == true)
@@ -89,6 +89,7 @@ namespace ProjAR
 
                 if (distance_buraco <= 1.5)
                 {
+                    Sistema.Instance.AtualizarHudAcucar();
                     Destroy(gameObject);
                     Sistema.Instance.AtualizarLifes(-1);
                 }
@@ -108,7 +109,7 @@ namespace ProjAR
 
         public void TomandoPorrada(float dps)
         {
-            HpAtual -= dps * Time.deltaTime;
+            HpAtual -= dps;
         }
 
         private void Viva()
