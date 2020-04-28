@@ -72,18 +72,15 @@ namespace ProjAR
 
         public void AtualizarAcucarCenter()
         {
-<<<<<<< HEAD
-            center.transform.Find("Açucar" + contAcucar.ToString()).gameObject.SetActive(false);
-            contAcucar -= 1;
-=======
-            center.transform.FindChild("Açucar" + contAcucarCenter.ToString()).gameObject.SetActive(false);
+
+            center.transform.Find("Açucar" + contAcucarCenter.ToString()).gameObject.SetActive(false);
             contAcucarCenter -= 1;
->>>>>>> ada140a841edab60023d1f42b7ae4d1490da7989
+
         }
 
         public void AtualizarHudAcucar()
         {
-            gerHudAcucar.transform.FindChild("Acucar" + contAcucarPerdidos.ToString()).gameObject.SetActive(false);
+            gerHudAcucar.transform.Find("Acucar" + contAcucarPerdidos.ToString()).gameObject.SetActive(false);
             contAcucarPerdidos -= 1;
         }
 
