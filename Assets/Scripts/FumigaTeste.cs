@@ -11,6 +11,8 @@ namespace ProjAR
         public GameObject center, buraco;
         Vector3 origem;
 
+       // public Transform hmmmm;
+
         #region variaveis
         public float vel = 2;
         float velCarregando;
@@ -24,6 +26,7 @@ namespace ProjAR
         #endregion
 
         CharacterController CC;
+        public GameObject HMMMM;
 
         // Start is called before the first frame update
         void Start()
@@ -35,6 +38,10 @@ namespace ProjAR
             HpAtual = HpTotal = 100f;
             origem = gameObject.transform.position;
             pegar = true;
+
+            center = GameObject.FindGameObjectWithTag("Center");
+
+            HMMMM = GameObject.FindGameObjectWithTag("HMM");
         }
 
         // Update is called once per frame
@@ -58,17 +65,23 @@ namespace ProjAR
                     movimento.z = 0;
                     movimento.x = vel * Time.deltaTime;
                     torreAfrente = false;
+
                 }
                 else
                 {
+                    
                     transform.LookAt(center.transform.position);
-                    movimento.x = 0;
-                    movimento.y = -4 * Time.deltaTime;
-                    movimento.z = vel * Time.deltaTime;
+                    
+
+                    
+
                 }
 
-                movimento = transform.TransformDirection(movimento);
-                CC.Move(movimento);
+                movimento = transform.TransformDirection(transform.forward);
+             
+                CC.Move(transform.forward*Time.deltaTime);
+
+                
             }
             else if (_return == true && pegar == true)
             {
@@ -79,13 +92,12 @@ namespace ProjAR
             {
 
                 transform.LookAt(origem);
+              
 
-                movimento.x = 0;
-                movimento.y = -4 * Time.deltaTime;
-                movimento.z = velCarregando * Time.deltaTime;
+               
 
-                movimento = transform.TransformDirection(movimento);
-                CC.Move(movimento);
+                //movimento = transform.TransformDirection(movimento);
+               CC.Move(transform.forward * Time.deltaTime);
 
                 if (distance_buraco <= 1.5)
                 {
@@ -93,8 +105,10 @@ namespace ProjAR
                     Destroy(gameObject);
                     Sistema.Instance.AtualizarLifes(-1);
                 }
+
+               
             }
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
+            //transform.eulerAngles = new Vector3(HMMMM.transform.eulerAngles.x, HMMMM.transform.eulerAngles.y, HMMMM.transform.eulerAngles.z);
         }
 
         private void OnTriggerEnter(Collider other)

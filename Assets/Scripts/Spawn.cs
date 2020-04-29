@@ -10,6 +10,9 @@ public class Spawn : MonoBehaviour
     public GameObject ant;
     private float time;
     private float waitTime;
+    private Plane a;
+
+    public Transform hmmm;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +22,8 @@ public class Spawn : MonoBehaviour
 
         minArea = transform.GetChild(0);
         maxArea = transform.GetChild(1);
+
+        
 
     }
 
@@ -34,9 +39,12 @@ public class Spawn : MonoBehaviour
         if (time > waitTime)
         {
 
-            Vector3 pos = new Vector3(Random.Range(minArea.position.x, maxArea.position.x), 0, Random.Range(minArea.transform.position.z, maxArea.transform.position.z));
+             Vector3 pos = new Vector3(Random.Range(minArea.position.x, maxArea.position.x), Random.Range(minArea.position.y, maxArea.position.y), Random.Range(minArea.transform.position.z, maxArea.transform.position.z));
+             //Vetor3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
-            GameObject.Instantiate(ant, pos, Quaternion.identity);
+            //GameObject.Instantiate(ant, pos,transform.rotation);
+            //GameObject.Instantiate(ant, pos, hmmm.rotation);
+            GameObject.Instantiate(ant, pos, hmmm.rotation);
 
             waitTime = Random.Range(10.0f, 15.0f);
             time = 0;
