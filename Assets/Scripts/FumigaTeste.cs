@@ -67,8 +67,13 @@ namespace ProjAR
                 else
                 {
                     transform.LookAt(center.transform.position);
+                    //Vector3 dir = center.transform.position - transform.position;
+                    //Quaternion lookRotation = Quaternion.LookRotation(dir);
+                    //Vector3 rotation = lookRotation.eulerAngles;
+                    //transform.localRotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
                 }
 
+               // transform.localRotation = Quaternion.EulerAngles(0.0f, transform.localRotation.y, 0.0f);
                 movimento = transform.TransformDirection(transform.forward);
              
                 CC.Move(transform.forward*Time.deltaTime);
@@ -101,6 +106,7 @@ namespace ProjAR
                
             }
             //transform.eulerAngles = new Vector3(HMMMM.transform.eulerAngles.x, HMMMM.transform.eulerAngles.y, HMMMM.transform.eulerAngles.z);
+           
         }
 
         private void OnTriggerEnter(Collider other)
