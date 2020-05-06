@@ -56,8 +56,6 @@ namespace ProjAR
                 _return = true;
                 gameObject.transform.Find("açucar").gameObject.SetActive(true);
             }
-
-
             if (_return == false)
             {
                 if (torreAfrente == true)
@@ -65,16 +63,10 @@ namespace ProjAR
                     movimento.z = 0;
                     movimento.x = vel * Time.deltaTime;
                     torreAfrente = false;
-
                 }
                 else
                 {
-                    
                     transform.LookAt(center.transform.position);
-                    
-
-                    
-
                 }
 
                 movimento = transform.TransformDirection(transform.forward);
