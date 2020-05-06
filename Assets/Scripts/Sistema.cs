@@ -17,8 +17,10 @@ namespace ProjAR
         public AudioSource musicSource;
 
         [Header("Effects")]
-        //aqui é pra ir os efeitos sonoros
+        public AudioClip[] fumigasMorrendo;
+        public AudioClip spray;
 
+        [Header("Outros bgl")]
         public GameObject center;
         int contAcucarCenter, contAcucarPerdidos;
         public Text pointstxt, lifestxt;
