@@ -42,7 +42,8 @@ public class Spawn : MonoBehaviour
 
                 //GameObject.Instantiate(ant, pos,transform.rotation);
                 //GameObject.Instantiate(ant, pos, hmmm.rotation);
-                GameObject.Instantiate(ant, pos, hmmm.rotation);
+                // GameObject.Instantiate(ant, pos, hmmm.rotation);
+                GameObject.Instantiate(ant, pos, transform.rotation, transform);
 
                 waitTime = Random.Range(10.0f, 15.0f);
                 time = 0;
