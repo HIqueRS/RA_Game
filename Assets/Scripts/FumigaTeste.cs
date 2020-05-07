@@ -130,6 +130,7 @@ namespace ProjAR
         {
             if (HpAtual <= 0)
             {
+                Sistema.Instance.PlaySFX(Sistema.Instance.fumigasMorrendo[UnityEngine.Random.Range(0, Sistema.Instance.fumigasMorrendo.Length)], 0.9f);
                 Sistema.Instance.AtualizarPoints(1);
                 Destroy(gameObject);
                 print("Destruido porq MORREO");
