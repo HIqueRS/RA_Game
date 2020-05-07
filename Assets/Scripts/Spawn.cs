@@ -14,6 +14,8 @@ public class Spawn : MonoBehaviour
     public GameObject center;
     public Transform hmmm;
 
+    public MeshRenderer aaa;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +23,18 @@ public class Spawn : MonoBehaviour
         waitTime = 0;
         minArea = transform.GetChild(0);
         maxArea = transform.GetChild(1);
+
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        Spanw();
+        if(aaa.enabled)
+        {
+            Spanw();
+
+        }
     }
 
     void Spanw()

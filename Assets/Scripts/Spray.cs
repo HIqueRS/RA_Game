@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vuforia;
 
 namespace ProjAR
 {
@@ -21,6 +22,8 @@ namespace ProjAR
 
         public GameObject particulas;
 
+        public MeshRenderer aaaa;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -38,27 +41,30 @@ namespace ProjAR
         // Update is called once per frame
         void Update()
         {
-
-            if (target == null)
+            if(aaaa.enabled)
             {
-                particulas.GetComponent<ParticleSystem>().enableEmission = false;
-                return;
+                if (target == null)
+                {
+                    particulas.GetComponent<ParticleSystem>().enableEmission = false;
+                    return;
+                }
+
+
+                Vector3 dir = target.position - transform.position;
+                Quaternion lookRotation = Quaternion.LookRotation(dir);
+                Vector3 rotation = Quaternion.Lerp(partToRotate.localRotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+                partToRotate.localRotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
+
+                if (fireCountdown <= 0)
+                {
+                    Shot();
+                    fireCountdown = 1f / fireRate;
+                }
+
+                fireCountdown -= Time.deltaTime;
+
             }
-
-
-            Vector3 dir = target.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            partToRotate.rotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
-
-            if (fireCountdown <= 0)
-            {
-                Shot();
-                fireCountdown = 1f / fireRate;
-            }
-
-            fireCountdown -= Time.deltaTime;
-
+            
         }
 
         private void Shot()

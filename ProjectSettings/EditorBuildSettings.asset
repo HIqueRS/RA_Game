@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Raulo.unity
     guid: 461b81a37aea5e846ac40260f60a038f
   - enabled: 1
+    path: Assets/Scenes/MenuInicial.unity
+    guid: f238ca637bbcdcc43b29a0dec63dbd02
+  - enabled: 1
     path: Assets/Scenes/Raulo 1.unity
     guid: 4504e18408ca13e419453fef4ae6b6a8
   m_configObjects: {}

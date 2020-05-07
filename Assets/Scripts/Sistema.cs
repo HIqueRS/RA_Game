@@ -89,7 +89,7 @@ namespace ProjAR
 
         public void Reiniciar()
         {
-            SceneManager.LoadScene("Raulo");
+            SceneManager.LoadScene("Raulo 1");
         }
 
 
