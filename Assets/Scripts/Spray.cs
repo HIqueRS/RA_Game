@@ -46,8 +46,8 @@ public class Spray : MonoBehaviour
 
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation,Time.deltaTime *turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
+        Vector3 rotation = Quaternion.Lerp(partToRotate.localRotation, lookRotation,Time.deltaTime *turnSpeed).eulerAngles;
+        partToRotate.localRotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
 
         if(fireCountdown <= 0)
         {

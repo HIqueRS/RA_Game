@@ -37,13 +37,14 @@ public class Spawn : MonoBehaviour
             time += Time.deltaTime;
             if (time > waitTime)
             {
-                            Vector3 pos = new Vector3(Random.Range(minArea.position.x, maxArea.position.x), Random.Range(minArea.position.y, maxArea.position.y), Random.Range(minArea.transform.position.z, maxArea.transform.position.z));
+                   Vector3 pos = new Vector3(Random.Range(minArea.position.x, maxArea.position.x), Random.Range(minArea.position.y, maxArea.position.y), Random.Range(minArea.position.z, maxArea.position.z));
                 //Vetor3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
                 //GameObject.Instantiate(ant, pos,transform.rotation);
                 //GameObject.Instantiate(ant, pos, hmmm.rotation);
                 // GameObject.Instantiate(ant, pos, hmmm.rotation);
-                GameObject.Instantiate(ant, pos, transform.rotation, transform);
+                GameObject.Instantiate(ant, pos, hmmm.rotation,hmmm);
+               // GameObject.Instantiate(ant, pos, Quaternion.identity);
 
                 waitTime = Random.Range(10.0f, 15.0f);
                 time = 0;

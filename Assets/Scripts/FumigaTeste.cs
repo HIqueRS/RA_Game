@@ -66,19 +66,18 @@ namespace ProjAR
                 }
                 else
                 {
-                    transform.LookAt(center.transform.position);
+                   
                     //Vector3 dir = center.transform.position - transform.position;
                     //Quaternion lookRotation = Quaternion.LookRotation(dir);
                     //Vector3 rotation = lookRotation.eulerAngles;
-                    //transform.localRotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
+                    //transform.localRotation = Quaternion.LookRotation(dir);
                 }
+                transform.LookAt(center.transform.position);
+              
 
-               // transform.localRotation = Quaternion.EulerAngles(0.0f, transform.localRotation.y, 0.0f);
-                movimento = transform.TransformDirection(transform.forward);
-             
-                CC.Move(transform.forward*Time.deltaTime);
+                 CC.Move(transform.forward * Time.deltaTime);
 
-                
+
             }
             else if (_return == true && pegar == true)
             {
@@ -88,13 +87,16 @@ namespace ProjAR
             else if (_return == true)
             {
 
-                transform.LookAt(origem);
-              
+                 transform.LookAt(origem);
 
-               
+                //Vector3 dir = origem - transform.position;
+                //Quaternion lookRotation = Quaternion.LookRotation(dir);
+                //Vector3 rotation = lookRotation.eulerAngles;
+                //transform.localRotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
+
 
                 //movimento = transform.TransformDirection(movimento);
-               CC.Move(transform.forward * Time.deltaTime);
+                CC.Move(transform.forward * Time.deltaTime);
 
                 if (distance_buraco <= 1.5)
                 {
