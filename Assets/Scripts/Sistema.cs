@@ -19,6 +19,7 @@ namespace ProjAR
         [Header("Effects")]
         public AudioClip[] fumigasMorrendo;
         public AudioClip spray;
+        public AudioClip button;
 
         [Header("Outros bgl")]
         public GameObject center;
@@ -100,6 +101,11 @@ namespace ProjAR
         public void PlaySFX(AudioClip sfxClip, float volume) // volume de 0.0 a 1 ( se n me engano )
         {
             sfxSource.PlayOneShot(sfxClip, volume);
+        }
+
+        public void PlaySFXPqOBotaoNaoAceitaDoisParametros()
+        {
+            PlaySFX(button, 1.0f);
         }
     }
 }

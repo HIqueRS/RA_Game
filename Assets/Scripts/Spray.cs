@@ -63,7 +63,7 @@ namespace ProjAR
 
         private void Shot()
         {
-            Sistema.Instance.PlaySFX(Sistema.Instance.spray, 0.9f);
+            Sistema.Instance.PlaySFX(Sistema.Instance.spray, 0.6f);
             colisor.enabled = true;
             particulas.GetComponent<ParticleSystem>().enableEmission = true;
             Debug.Log("bah");

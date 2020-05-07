@@ -1277,6 +1277,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1229370225}
+        m_MethodName: PlaySFXPqOBotaoNaoAceitaDoisParametros
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1030634309
@@ -1438,6 +1449,11 @@ PrefabInstance:
       propertyPath: spray
       value: 
       objectReference: {fileID: 8300000, guid: a781fde0cc8c89f4ca596d4f7af3febc, type: 3}
+    - target: {fileID: 923359385370140742, guid: 8155b3df848a5a6428d8fd92795ad63e,
+        type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 8300000, guid: 91dda405b9a6e384a9d40124e7f0a02c, type: 3}
     - target: {fileID: 880376688830120900, guid: 8155b3df848a5a6428d8fd92795ad63e,
         type: 3}
       propertyPath: m_audioClip
